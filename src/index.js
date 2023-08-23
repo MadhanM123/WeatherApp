@@ -7,8 +7,36 @@ const key = "48941932b211d38b0c233f257ad34560";
 
 form.addEventListener("submit", e => {
     e.preventDefault();
+    let inputVal = input.value;
+
     const listItems = list.querySelectorAll(".ajax-section .city");
-    const inputVal = input.value;
+    const listItemsArr = Array.from(listItems);
+
+    if(listItemsArr.length > 0){
+        const filteredArr = listItemsArr.filter(el => {
+            let content = "";
+            if(inputVal.includes(",")){
+                if(inputVal.split(",")[1].length > 2){
+                    inputVal = inputVal.split(",")[0];
+                    content = el.querySelector(".city-name span").textContent.toLowerCase();
+                }
+                else{
+                    content = el.querySelector(".city-name").dataset.name.toLowerCase();
+                }
+            }
+            else{
+                content = el.querySelector(".city-name span").textContent.toLowerCase();
+            }
+            return content == inputVal.toLowerCase();
+        });
+        
+        if(filteredArr.length > 0){
+            msg.textContent = "City present already, if not provide country code as well";
+            form.reset();
+            input.focus();
+            return;
+        }
+    }
 
     const url = `https://api.openweathermap.org/data/2.5/weather?q=${inputVal}&appid=${key}&units=imperial`;
 
