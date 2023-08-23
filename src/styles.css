@@ -1,9 +1,9 @@
 :root{
-    --bg_main_color: #0a1f44;
+    --bg_main_color: #1d0a44;
     --text_light: #fff;
     --text_med: #53627c;
     --text_dark: #1e2432;
-    --red: #ff1e42;
+    --red: #1e65ff;
     --darkred: #c3112d;
     --orange: #ff8c00;
 }
@@ -125,11 +125,12 @@ body{
 /*List item styles*/
 
 .ajax-section{
-    margin: 50px 0px 20px;
+    margin: 70px 0px 20px;
 }
 
 .ajax-section .cities{
     display: grid;
+    gap: 40px 30px;
     grid-template-columns: repeat(4, 1fr);
 }
 
